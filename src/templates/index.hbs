@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="utf-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width,initial-scale=1" name="viewport">
-    <meta content="" name="description">
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width,initial-scale=1' name='viewport'>
+    <meta content='' name='description'>
     <title>{{ title }}</title>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="images/favicon.png" rel="icon">
+    <link href='css/style.css' rel='stylesheet'>
+    <link href='css/tr-bands.css' rel='stylesheet'>
+    <link href='images/favicon.png' rel='icon'>
+    <script type='text/javascript' src='scripts/eventful.js'></script>
 </head>
 
 <body>
 
     {{> header}}
-    
+
     <div class='container'>
-        <p>If this page looks okay then html templating and CSS should be working.</p>
-        <p id='js-test'>And let's check if babel is working<span>.</span></p>
+
+        <div class='loading' id='spinner'>
+            <div class='loading-inner'>loading<span class='ellip'>...</span></div>
+        </div>
+        <table class='table hidden' id='event-list'>
+        </table>
     </div>
-    
+
     {{> footer}}
-    
-<script src='scripts/script.js'></script>
+    <script src='scripts/tr-bands.js'></script>
 </body>
 
 </html>

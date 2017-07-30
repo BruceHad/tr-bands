@@ -36,9 +36,7 @@ gulp.task('html', function() {
             return JSON.parse(fs.readFileSync('./src/data/tr-data.json'));
         }))
         .pipe(handlebars(templateData, options))
-        .pipe(rename(function(path) {
-            path.extname = '.html';
-        }))
+        .pipe(rename('tr-bands.html'))
         .pipe(htmlBeautify({
             indentSize: 2
         }))
