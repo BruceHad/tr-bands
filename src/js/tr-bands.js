@@ -32,7 +32,17 @@ window.addEventListener('load', function() {
         let html = '';
         for (let i in events) {
             let ev = events[i];
-            let performer = ev.performers.performer.name;
+            let performer;
+            if(ev.performers.performer instanceof Array){
+                // performer = 'no-one';
+                let performers = ev.performers.performer;
+                performer = performers.reduce(function(performers, performer){
+                    return performers += performer.name + ' ';
+                }, '');
+            }
+            else { 
+                performer = ev.performers.performer.name;
+            }
             let [date, time] = getDateAndTime(ev.date_time);
             html += `<tr>
                     <td>${performer}</td>
@@ -78,9 +88,9 @@ window.addEventListener('load', function() {
             sorted.push(list[lowest]);
             list.splice(lowest, 1);
         }
-        for (let i in sorted){
-            console.log(sorted[i][sortby]);
-        }
+        // for (let i in sorted){
+        //     console.log(sorted[i][sortby]);
+        // }
         return sorted;
     }
 
@@ -99,7 +109,6 @@ window.addEventListener('load', function() {
             events = [];
         for (let e in EV) {
             let event = EV[e];
-            // console.log(event);
             events.push({
                 performers: event.performers,
                 venue_name: event.venue_name,
@@ -108,12 +117,13 @@ window.addEventListener('load', function() {
                 date_time: event.start_time
             });
         }
-        // console.log(events[0]);
+        // console.log(events);
         // console.log(events[1]);
-        // console.log(events.length);
+        console.log(events.length);
         events = events.filter(function(value) {
             return value.performers != null;
         });
+        console.log(events.length);
         updatePage(sortList(events, 'date_time'));
     });
 });
